@@ -129,8 +129,33 @@ exports.cakeDetail=(req,res,next)=>{
         res.send('Error');
     }
     //successfully,so render.
-    res.render('partials/cakeDetail',{title:'Cake Detail',cakeCategory:results.cakeCategory,
-    data:results.cakeDetail});
+    let cake_detail=results.cakeDetail;
+    var relatedCakes=[]; 
+    
+    var test=Cake.find({cakeCategory:cake_detail.cakeCategory},'nameCake newPrice oldPrice image')
+    .populate('cakeCategory')
+    .exec((err,relatedCake)=>{
+        if (err) { return next(err); } 
+        let len=relatedCake.length;
+        if(len>8)
+            len=8;
+        for(let i=0;i<len;i++)
+        {
+            if(relatedCake[i].id!=cake_detail.id)
+            {
+                relatedCakes.push(relatedCake[i]);
+            }
+            if(i===len-1)
+                done();
+        }
+    });
+    done=(err)=>
+    {
+        if (err) { return next(err); } 
+        res.render('partials/cakeDetail',{title:'Cake Detail',
+        cakeCategory:results.cakeCategory,
+        data:results.cakeDetail,relatedCakes:relatedCakes});
+    }
    })
 }
 
