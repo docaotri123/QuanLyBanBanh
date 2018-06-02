@@ -100,11 +100,37 @@ exports.cakeProduct=(req,res,next)=>{
         cakeCategory:function(callback){
             CakeCategory.find({},'nameCategory')
             .exec(callback);
-        }
-        
+        },
+        cakes:function(callback){
+            Cake.find({cakeCategory:req.params.id},'nameCake oldPrice newPrice image')
+            .populate('cakeCategory')
+            .exec(callback);
+        } 
    },(err,results)=>{
     //successfully,so render.
-    res.render('partials/product',{title:'Product',cakeCategory:results.cakeCategory});
+    let cakes=results.cakes;
+    let listCake=[];
+    let arr=[];
+    let len=3;
+    console.log('--------------------------------------',cakes.length);
+    for(let i=0;i<cakes.length;i++)
+    {
+        if(i<cakes.length)
+        {
+            listCake.push(cakes.slice(i,i+3));
+        }          
+        else
+        {
+            listCake.push(cakes.slice(i,cakes.length));
+        }
+        i+=2;
+    }
+    console.log(listCake);
+    res.render('partials/product',{
+        title:'Product',
+        cakeCategory:results.cakeCategory,
+        listCake:listCake
+    });
        
    })
 }

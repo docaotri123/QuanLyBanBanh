@@ -8,7 +8,7 @@ var cake_Controller=require('../controllers/cakeController');
 // GET catalog home page.
 router.get('/',cake_Controller.index);
 
-router.get('/product',cake_Controller.cakeProduct);
+router.get('/product/:id',cake_Controller.cakeProduct);
 
 router.get('/cake/:id',cake_Controller.cakeDetail);
 
