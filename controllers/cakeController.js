@@ -33,8 +33,8 @@ exports.index=(req,res,next)=>{
         },
         highPriceCake:function(callback)
         {
-            Cake.find({},'nameCake price image')
-            .sort({price:-1})
+            Cake.find({},'nameCake newPrice oldPrice image')
+            .sort({newPrice:-1})
             .populate('cakeCategory')
             .exec(callback)
         }
@@ -76,8 +76,8 @@ exports.index=(req,res,next)=>{
         let HighPriceCake=results.highPriceCake;
         let listHighCake=[];
         let len=HighPriceCake.length;
-        if(len>4)
-            len=4;
+        if(len>8)
+            len=8
         for(let i=0;i<len;i++)
             listHighCake.push(HighPriceCake[i]);
 
