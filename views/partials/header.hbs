@@ -96,6 +96,9 @@
 	<!-- //shop locator (popup) -->
 	<!-- signin Model -->
 	<!-- Modal1 -->
+	{{#if login}}
+		<a href="/logout">Đăng Xuất</a>
+	{{/if}}
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -114,12 +117,12 @@
 							<a href="#" data-toggle="modal" data-target="#myModal2">
 								Sign Up Now</a>
 						</p>
-						<form action="#" method="post">
+						<form action="/signin" method="POST">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="User Name" name="Name" required="">
+								<input type="text" placeholder="User Name" name="username" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" required="">
+								<input type="text" placeholder="Password" name="password" required="">
 							</div>
 							<input type="submit" value="Sign In">
 						</form>
@@ -151,20 +154,27 @@
 						<p>
 							Come join the Grocery Shoppy! Let's set up your Account.
 						</p>
-						<form action="#" method="post">
+						<form action="/signup" method="POST">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Name" name="Name" required="">
+								<input type="text" placeholder="Name" name="name" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Phone" name="phone" required="">
 							</div>
 							<div class="styled-input">
-								<input type="email" placeholder="E-mail" name="Email" required="">
+								<input type="email" placeholder="E-mail" name="email" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="UserName" name="username" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" id="password1" required="">
+								<input type="text" placeholder="Password" name="password" id="password1" >
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">
+								<input type="text" placeholder="Confirm Password" name="confirmPassword" id="password2">
 							</div>
 							<input type="submit" value="Sign Up">
+							
 						</form>
 						<p>
 							<a href="#">By clicking register, I agree to your terms</a>
