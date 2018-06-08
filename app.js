@@ -10,6 +10,10 @@ var session=require('express-session');
 var passport=require('passport');
 var flash=require('connect-flash');
 
+//
+var User=require('./models/customer');
+
+
 // Import routes for "catalog" area of site
 var index = require('./routes/index');
 var catalog = require('./routes/catalog'); 
@@ -51,8 +55,11 @@ app.use(flash());
 
 app.use((req,res,next)=>{
   res.locals.login=req.isAuthenticated();
-  console.log('payload', res.locals);
-  console.log('-------------',req.isAuthenticated());
+  res.locals.styleAccount=5;
+  if(req.isAuthenticated()===true)
+  {
+    res.locals.styleAccount=req.user.style;
+  }
   next();
 });
 

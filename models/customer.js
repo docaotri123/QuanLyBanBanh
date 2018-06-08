@@ -1,5 +1,4 @@
 var mongoose=require('mongoose');
-var bcrypt=require('bcrypt-nodejs');
 
 var Schema=mongoose.Schema;
 
@@ -14,16 +13,6 @@ var CustomerSchema=new Schema(
         style:{type:String,required:true}
     }
 );
-
-// kiểm tra mật khẩu có trùng khớp
-// CustomerSchema.methods.validPassword = function(password) {
-//     console.log('*****',bcrypt.compareSync(password, this.password));
-//     return bcrypt.compareSync(password, this.password);
-// };
-// tạo mã hóa
-// CustomerSchema.methods.generateHash = function(password) {
-//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// };
 
 
 // Export model.

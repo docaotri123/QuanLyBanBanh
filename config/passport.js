@@ -30,16 +30,14 @@ module.exports = function(passport) {
     },
     function(req, username, password, done) {
         process.nextTick(function() {
-        User.findOne({ 'usernamr' :  username }, function(err, user) {
+        User.findOne({ 'username' :  username }, function(err, user) {
             if (err)
                 return done(err);
             if (user) {
+                console.log('--------Ton Tai Roi--------------');
                 return done(null, false, req.flash('signupMessage', 'Email  đã tồn tại .'));
             } else {
-                let ps=req.param('password');
-                let ps1=req.param('confirmPassword');
-                if(ps==ps1)
-                {
+    
                 let newUser            = new User(
                     {
                         name    : req.param('name'),
@@ -56,10 +54,7 @@ module.exports = function(passport) {
                          throw err;
                     return done(null, newUser);
                 });
-            }
-            else{
-                return done(null);
-            }
+          
             }
 
         });    
