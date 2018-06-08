@@ -10,9 +10,10 @@ var session=require('express-session');
 var passport=require('passport');
 var flash=require('connect-flash');
 
-
+// Import routes for "catalog" area of site
 var index = require('./routes/index');
-var catalog = require('./routes/catalog'); // Import routes for "catalog" area of site
+var catalog = require('./routes/catalog'); 
+var admin=require('./routes/admin');
 
 
 
@@ -50,13 +51,16 @@ app.use(flash());
 
 app.use((req,res,next)=>{
   res.locals.login=req.isAuthenticated();
+  console.log('payload', res.locals);
   console.log('-------------',req.isAuthenticated());
   next();
 });
 
+// Add catalog routes to middleware chain.
 require('./routes/user.js')(app, passport);
 app.use('/', index);
-app.use('/catalog', catalog); // Add catalog routes to middleware chain.
+app.use('/catalog', catalog); 
+app.use('/admin',admin);
 
 
 

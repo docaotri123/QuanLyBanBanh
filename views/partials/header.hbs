@@ -28,9 +28,15 @@
 					<li>
 						<span class="fa fa-phone" aria-hidden="true"></span> 0965 528 621
 					</li>
-					<li>
+					<li >
+					{{#if login}}
+						<a href="/logout" >
+						<span class="fa fa-unlock-alt" aria-hidden="true"></span> Log Out </a>
+					{{/if}}
+					{{#unless login}}
 						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+						<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+					{{/unless}}
 					</li>
 					<li>
 						<a href="#" data-toggle="modal" data-target="#myModal2">
@@ -96,9 +102,6 @@
 	<!-- //shop locator (popup) -->
 	<!-- signin Model -->
 	<!-- Modal1 -->
-	{{#if login}}
-		<a href="/logout">Đăng Xuất</a>
-	{{/if}}
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -168,15 +171,15 @@
 								<input type="text" placeholder="UserName" name="username" required="">
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="Password" name="password" id="password1" >
+								<input type="password" placeholder="Password" name="password" id="password1" >
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="Confirm Password" name="confirmPassword" id="password2">
+								<input type="password" placeholder="Confirm Password" name="confirmPassword" id="password2">
 							</div>
 							<input type="submit" value="Sign Up">
 							
 						</form>
-						<p>
+						<p
 							<a href="#">By clicking register, I agree to your terms</a>
 						</p>
 					</div>
@@ -244,6 +247,7 @@
 												</ul>
 											</div>
 											<div class="col-sm-4 multi-gd-img">
+
 												<img src="images/nav.png" alt="">
 											</div>
 											<div class="clearfix"></div>

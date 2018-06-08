@@ -1,18 +1,72 @@
 // config/passport.js
 var LocalStrategy   = require('passport-local').Strategy;
 var User=require('../models/customer');
+var bcrypt=require('bcrypt-nodejs');
+
+ function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+ function validPassword(password,user) {
+    console.log('*****',bcrypt.compareSync(password, user.password));
+    return bcrypt.compareSync(password, user.password);
+};
 
 module.exports = function(passport) {
-
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
-
+    
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
             done(err, user);
         });
     });
+
+    passport.use('local-signup', new LocalStrategy({
+        usernameField : 'username',
+        passwordField : 'password',
+        passReqToCallback : true 
+    },
+    function(req, username, password, done) {
+        process.nextTick(function() {
+        User.findOne({ 'usernamr' :  username }, function(err, user) {
+            if (err)
+                return done(err);
+            if (user) {
+                return done(null, false, req.flash('signupMessage', 'Email  đã tồn tại .'));
+            } else {
+                let ps=req.param('password');
+                let ps1=req.param('confirmPassword');
+                if(ps==ps1)
+                {
+                let newUser            = new User(
+                    {
+                        name    : req.param('name'),
+                        username:req.param('username'),
+                        password : generateHash(req.param('password')),
+                        phone:req.param('phone'),
+                        email:req.param('email'),
+                        style:0
+                    }
+                );
+
+                newUser.save(function(err) {
+                    if (err)
+                         throw err;
+                    return done(null, newUser);
+                });
+            }
+            else{
+                return done(null);
+            }
+            }
+
+        });    
+
+        });
+
+    }));
 
     passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -32,50 +86,15 @@ module.exports = function(passport) {
             // if no user is found, return the message
             if (!user)
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-            //if the user is found but the password is wrong
-            let ck=user.validPassword(password);
-            if (ck==null)
-                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+
+            // if the user is found but the password is wrong
+            if (!validPassword(password,user))
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+
             // all is well, return successful user
-            
             return done(null, user);
         });
 
-    }));
-    
-    passport.use('local-signup', new LocalStrategy({
-        usernameField : 'username',
-        passwordField : 'password',
-        passReqToCallback : true 
-    },
-    function(req, username, password, done) {
-        process.nextTick(function() {
-        User.findOne({ 'username' :  username }, function(err, user) {
-            if (err)
-                return done(err);
-            if (user) {
-                return done(null, false, req.flash('signupMessage', 'Username  đã tồn tại .'));
-            } else {
-                var newUser            = new User();
-                newUser.name=req.params.name;
-                newUser.username=username;
-                newUser.phone=req.params.phone;
-                newUser.email=req.params.email;
-                newUser.style=0;
-                newUser.password = newUser.generateHash(password);
-                console.log(newUser);
-                // newUser.save(function(err) {
-                //     if (err)
-                //         throw err;
-                //     return done(null, newUser);
-                // });
-                return done(null, newUser);
-            }
-
-        });    
-
-        });
-
-    }));
+    }));   
 
 }
