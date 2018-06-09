@@ -6,10 +6,14 @@ var logger = require('morgan');
 var mongoose=require('mongoose');
 var bodyParser=require('body-parser');
 var expressHbs=require('express-handlebars');
+var handlebars=require('handlebars');
 var session=require('express-session');
 var passport=require('passport');
 var flash=require('connect-flash');
 
+var helpers = require('handlebars-helpers')({
+  handlebars:handlebars
+});
 //
 var User=require('./models/customer');
 
@@ -21,13 +25,15 @@ var admin=require('./routes/admin');
 
 
 
-//GHi Data
+//Write Data
 //var ghidate=require('./writeData');
 var configDb=require('./config/database');
 var app = express();
 mongoose.Promise=global.Promise;
 
+// hbs helpers 
 
+//connect database
 mongoose.connect(configDb.url)
   .then(() =>  console.log('connection mongodb succesful'))
   .catch((err) => console.error(err));
@@ -36,7 +42,11 @@ mongoose.connect(configDb.url)
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs',expressHbs({defaultLayout:'layout',extname:'.hbs'}))
+app.engine('.hbs',expressHbs({
+  handlebars:handlebars,
+  defaultLayout:'layout',
+  extname:'.hbs'
+}))
 app.set('view engine', '.hbs');
 
 // Uncomment after placing your favicon in /public
