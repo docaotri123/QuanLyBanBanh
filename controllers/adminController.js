@@ -44,11 +44,11 @@ exports.cake_get=(req,res,next)=>{
         }
     },(err,result)=>{
         let data=[];
-        let x;
+        let xx;
         let rs=result.cake;
         for(let i=0;i<rs.length;i++)
         {
-            x=new CakeVM({
+            xx=new CakeVM({
                 stt:i+1,
                 nameCake:rs[i].nameCake,
                 oldPrice:rs[i].oldPrice,
@@ -56,7 +56,7 @@ exports.cake_get=(req,res,next)=>{
                 cakeCategory:rs[i].cakeCategory.nameCategory,
                 image:rs[i].image
             });
-            data.push(x);
+            data.push(xx);
         }
         console.log(rs);
         res.render('admin/cake',
