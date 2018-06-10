@@ -1,0 +1,92 @@
+
+<div class="row" id="adminCategory">
+	 <table class="table table-hover">
+    <thead>
+      <tr>
+        <th id="th01">#</th>
+        <th id="th02">Category</th>
+		<th id="th03" colspan="3">Role</th>
+
+      </tr>
+    </thead>
+    <tbody>
+		{{#each cakeCategory}}
+      	<tr>
+        	<td>{{stt}}</td>
+        	<td>{{nameCategory}}</td>
+			<td style="width: 50px">
+				<a href="#" data-toggle="modal" data-target="#myModalAddCategory">
+				<span class="fa fa-plus-square" aria-hidden="true"></span> Add </a>
+			</td>
+			<td style="width: 50px">
+				<a href="#">
+				<span class="fa fa-window-close" aria-hidden="true"></span> Delete </a>
+			</td>
+			<td style="width: 50px">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCategory">
+				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
+			</td>
+      	</tr>
+		{{/each}}
+    </tbody>
+  </table>
+</diV>
+
+{{!-- Model Add --}}
+<div class="modal fade" id="myModalAddCategory" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Add category </h3>
+						
+						<form action="#" method="POST">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Name Category" name="nameCategory" required="">
+							</div>
+							<input type="submit" value="Add">
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+</div>
+{{!-- Model Edit --}}
+<div class="modal fade" id="myModalEditCategory" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Edit category </h3>
+						
+						<form action="#" method="POST">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Name Category" name="nameCategory" required="">
+							</div>
+							<input type="submit" value="Edit">
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+</div>

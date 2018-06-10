@@ -1,0 +1,148 @@
+
+<div class="row" id="adminCake">
+	 <table class="table table-hover">
+    <thead>
+      <tr>
+        <th id="th01">#</th>
+        <th id="th02">Name</th>
+        <th id="th03">Old Price</th>
+        <th id="th04">New Price</th>
+        <th id="th05">Category</th>
+        <th id="th06">Image</th>
+		<th id="th07" colspan="3">Role</th>
+
+      </tr>
+    </thead>
+    <tbody>
+		{{#each cake}}
+      	<tr>
+        	<td>{{stt}}</td>
+        	<td>{{nameCake}}</td>
+            <td>{{oldPrice}}</td>
+            <td>{{newPrice}}</td>
+            <td>{{cakeCategory}}</td>
+            <td style="width: 250px">{{image}}</td>
+			<td style="width: 50px">
+				<a href="#" data-toggle="modal" data-target="#myModalAddCake">
+				<span class="fa fa-plus-square" aria-hidden="true"></span> Add </a>
+			</td>
+			<td style="width: 50px">
+				<a href="#">
+				<span class="fa fa-window-close" aria-hidden="true"></span> Delete </a>
+			</td>
+			<td style="width: 50px">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCake">
+				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
+			</td>
+      	</tr>
+		{{/each}}
+    </tbody>
+  </table>
+</diV>
+
+{{!-- Model Add --}}
+<div class="modal fade" id="myModalAddCake" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Add category </h3>
+						
+						<form action="#" method="POST">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Name Cake" name="nameCake" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Old Price" name="oldPrice" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="New Price" name="newPrice" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Category" name="category" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Image" name="image" required="">
+							</div>
+							<input type="submit" value="Add">
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+</div>
+{{!-- Model Edit --}}
+<div class="modal fade" id="myModalEditCake" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Edit category </h3>
+						
+						<form action="#" method="POST">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Name Cake" name="nameCake" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Old Price" name="oldPrice" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="New Price" name="newPrice" required="">
+							</div>
+							{{!-- <div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Category" name="category" required="">
+							</div> --}}
+							<div class="dropdown styled-input agile-styled-input-top">
+									<a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu multi-column columns-3">
+										<div class="agile_inner_drop_nav_info">
+											<div class="col-sm-4 multi-gd-img">
+												<ul class="multi-column-dropdown">
+													{{#each cakeCategory}}
+													<li>
+														<a href="catalog/product/{{id}}">{{nameCategory}}</a>
+													</li>
+													{{/each}}
+												</ul>
+											</div>
+											<div class="col-sm-4 multi-gd-img">
+												<ul class="multi-column-dropdown">
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</ul>
+							</div>
+							<hr>
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Image" name="image" required="">
+							</div>
+							<input type="submit" value="Edit">
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+</div>

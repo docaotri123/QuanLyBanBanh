@@ -112,7 +112,6 @@ exports.cakeProduct=(req,res,next)=>{
     let listCake=[];
     let arr=[];
     let len=3;
-    console.log('--------------------------------------',cakes.length);
     for(let i=0;i<cakes.length;i++)
     {
         if(i<cakes.length)
@@ -125,7 +124,6 @@ exports.cakeProduct=(req,res,next)=>{
         }
         i+=2;
     }
-    console.log(listCake);
     res.render('partials/product',{
         title:'Product',
         cakeCategory:results.cakeCategory,

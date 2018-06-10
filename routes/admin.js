@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var adminController=require('../controllers/admin');
+var adminController=require('../controllers/adminController');
 
-router.get('/addCategory',adminController.addCategory_get);
+router.get('/category',adminController.category_get);
+
+router.get('/cake',adminController.cake_get);
 
 module.exports=router;
