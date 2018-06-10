@@ -52,7 +52,7 @@ exports.index=(req,res,next)=>{
         let len1=Cakes1.length;
         let len2=Cakes2.length;
         let len3=Cakes3.length;
-        //LEN=3
+        //LENGTH=3
         if(len1>3)
             len1=3;
         if(len2>3)
