@@ -5,6 +5,7 @@ const Cake=require('../models/cake');
 const CakeCategoryVM=require('../models/viewmodel/cakeCategory'); 
 const CakeVM=require('../models/viewmodel/cake'); 
 
+//cakeCategory
 
 exports.category_get=(req,res,next)=>{
     async.parallel({
@@ -24,7 +25,6 @@ exports.category_get=(req,res,next)=>{
             });
             data.push(x);
         }
-        console.log(data);
         res.render('admin/category',
             {
                 title:'Category',
@@ -34,6 +34,19 @@ exports.category_get=(req,res,next)=>{
     });
 }
 
+exports.addCategory_post=(req,res,next)=>{
+    let cakeCategory=new CakeCategory({
+        nameCategory:req.param('nameCategory')
+    });
+    cakeCategory.save((err)=>{
+        if(err)
+            res.redirect('/');
+        console.log('Save succesfully');
+        res.redirect('/admin/category');
+    })
+    
+}
+//cake
 exports.cake_get=(req,res,next)=>{
     async.parallel({
         cake:(cb)=>{
