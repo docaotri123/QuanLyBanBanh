@@ -41,11 +41,17 @@ exports.addCategory_post=(req,res,next)=>{
     cakeCategory.save((err)=>{
         if(err)
             res.redirect('/');
-        console.log('Save succesfully');
         res.redirect('/admin/category');
     })
     
 }
+
+exports.deleteCategory_post=(req,res,next)=>{
+    let x=req.param('idCategory');
+    
+    res.redirect('/admin/category');
+}
+
 //cake
 exports.cake_get=(req,res,next)=>{
     async.parallel({

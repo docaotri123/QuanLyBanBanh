@@ -6,6 +6,9 @@ var adminController=require('../controllers/adminController');
 router.get('/category',adminController.category_get);
 
 router.post('/category',adminController.addCategory_post);
+
+router.post('/deleteCategory',adminController.deleteCategory_post);
+
 //cake
 router.get('/cake',adminController.cake_get);
 

@@ -19,8 +19,8 @@
 				<span class="fa fa-plus-square" aria-hidden="true"></span> Add </a>
 			</td>
 			<td style="width: 50px">
-				<a href="#">
-				<span class="fa fa-window-close" aria-hidden="true"></span> Delete </a>
+				<a href="#" data-toggle="modal" data-target="#myModalDeleteCategory" onclick="Delete('{{id}}')">
+				<span class="fa fa-trash" aria-hidden="true"></span> Delete </a>
 			</td>
 			<td style="width: 50px">
 				<a href="#" data-toggle="modal" data-target="#myModalEditCategory">
@@ -61,6 +61,34 @@
 			<!-- //Modal content-->
 		</div>
 </div>
+{{!-- Delete --}}
+<div class="modal fade" id="myModalDeleteCategory" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Are you sure delete category? </h3>
+						<form action="/admin/deleteCategory" method="POST">
+							<div class="styled-input agile-styled-input-top">
+								<input hidden="true" type="text" placeholder="Name Category" id="idCategory" name="idCategory" required="">
+							</div>
+							<input type="submit"  value="OK">
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+</div>
 {{!-- Model Edit --}}
 <div class="modal fade" id="myModalEditCategory" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
@@ -89,4 +117,14 @@
 			</div>
 			<!-- //Modal content-->
 		</div>
+
 </div>
+{{!-- test --}}
+
+{{!-- script --}}
+<script>
+	let x;
+	function Delete(x){
+		document.getElementById("idCategory").value = x;
+	}
+</script>
