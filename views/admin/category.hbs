@@ -23,7 +23,7 @@
 				<span class="fa fa-trash" aria-hidden="true"></span> Delete </a>
 			</td>
 			<td style="width: 50px">
-				<a href="#" data-toggle="modal" data-target="#myModalEditCategory">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCategory" onclick="Edit('{{nameCategory}}')">
 				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
 			</td>
       	</tr>
@@ -106,7 +106,7 @@
 						
 						<form action="#" method="POST">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Name Category" name="nameCategory" required="">
+								<input type="text" id="nameCategory" placeholder="Name Category" name="nameCategory" required="">
 							</div>
 							<input type="submit" value="Edit">
 						</form>
@@ -127,4 +127,8 @@
 	function Delete(x){
 		document.getElementById("idCategory").value = x;
 	}
+	function Edit(x){
+		document.getElementById("nameCategory").value=x;
+	}
+
 </script>

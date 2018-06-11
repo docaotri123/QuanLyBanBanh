@@ -20,6 +20,7 @@ exports.category_get=(req,res,next)=>{
         for(let i=0;i<rs.length;i++)
         {
             x=new CakeCategoryVM({
+                id:rs[i].id,
                 stt:i+1,
                 nameCategory:rs[i].nameCategory
             });
@@ -47,13 +48,36 @@ exports.addCategory_post=(req,res,next)=>{
 }
 
 exports.deleteCategory_post=(req,res,next)=>{
-    let x=req.param('idCategory');
-    
-    res.redirect('/admin/category');
+    async.parallel({
+        cakes:(cb)=>{
+            Cake.find({cakeCategory:req.param('idCategory')},'')
+            .populate('cakeCategory')
+            .exec(cb)
+        }
+    },(err,result)=>{
+        if(err)
+            return err;
+        let cakes=result.cakes;
+        console.log(cakes);
+        if(cakes.length>0)
+        {
+            console.log(`Don't delete`);
+            res.redirect('/admin/category'); 
+        }
+        else{
+            CakeCategory.deleteOne({_id:req.param('idCategory')})
+            .exec((err)=>{
+                if(err)
+                    return err;
+                console.log('Deleted successfully')
+                res.redirect('/admin/category'); 
+            });
+        }
+    })
 }
 
 //cake
-exports.cake_get=(req,res,next)=>{
+exports.cake_get=(req,res)=>{
     async.parallel({
         cake:(cb)=>{
             Cake.find({},'nameCake oldPrice newPrice cakeCategory image')

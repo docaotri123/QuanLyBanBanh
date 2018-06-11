@@ -9,4 +9,3 @@ var CakeCategorySchema=new Schema(
 
 // Export model.
 module.exports=mongoose.model("CakeCategory",CakeCategorySchema);
-
