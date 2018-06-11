@@ -76,6 +76,22 @@ exports.deleteCategory_post=(req,res,next)=>{
     })
 }
 
+exports.editCategoty_post=(req,res,next)=>{
+    console.log(req.param('id1Category'));
+    CakeCategory.findById(req.param('id1Category'),(err,doc)=>{
+        if(err)
+            handleError(err);
+        doc.nameCategory=req.param('nameCategory');
+
+        doc.save((err)=>{
+            if(err)
+                handleError(err);
+            console.log('Updated successfully');
+            res.redirect('/admin/category');
+        });
+    });
+}
+
 //cake
 exports.cake_get=(req,res)=>{
     async.parallel({

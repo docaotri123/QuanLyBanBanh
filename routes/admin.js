@@ -9,6 +9,8 @@ router.post('/category',adminController.addCategory_post);
 
 router.post('/deleteCategory',adminController.deleteCategory_post);
 
+router.post('/editCategory',adminController.editCategoty_post);
+
 //cake
 router.get('/cake',adminController.cake_get);
 

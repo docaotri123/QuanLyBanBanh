@@ -23,7 +23,7 @@
 				<span class="fa fa-trash" aria-hidden="true"></span> Delete </a>
 			</td>
 			<td style="width: 50px">
-				<a href="#" data-toggle="modal" data-target="#myModalEditCategory" onclick="Edit('{{nameCategory}}')">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCategory" onclick="Edit(`{{nameCategory}},{{id}}`)">
 				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
 			</td>
       	</tr>
@@ -104,10 +104,11 @@
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Edit category </h3>
 						
-						<form action="#" method="POST">
+						<form action="/admin/editCategory" method="POST">
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" id="nameCategory" placeholder="Name Category" name="nameCategory" required="">
 							</div>
+								<input hidden="true" type="text" id="id1Category" name="id1Category" required="">
 							<input type="submit" value="Edit">
 						</form>
 						<div class="clearfix"></div>
@@ -123,12 +124,15 @@
 
 {{!-- script --}}
 <script>
-	let x;
+	let x,id;
 	function Delete(x){
 		document.getElementById("idCategory").value = x;
 	}
 	function Edit(x){
-		document.getElementById("nameCategory").value=x;
+		let arr=x.split(',');
+		console.log(arr[1]);
+		document.getElementById("nameCategory").value=arr[0];
+		document.getElementById("id1Category").value=arr[1];
 	}
 
 </script>
