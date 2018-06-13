@@ -95,6 +95,10 @@ exports.editCategoty_post=(req,res,next)=>{
 //cake
 exports.cake_get=(req,res)=>{
     async.parallel({
+        cakeCategory:function(callback){
+            CakeCategory.find({},'nameCategory')
+            .exec(callback);
+        },
         cake:(cb)=>{
             Cake.find({},'nameCake oldPrice newPrice cakeCategory image')
             .populate('cakeCategory')
@@ -117,12 +121,27 @@ exports.cake_get=(req,res)=>{
             });
             data.push(xx);
         }
-        console.log(rs);
         res.render('admin/cake',
             {
                 title:'Cake',
+                cakeCategory:result.cakeCategory,
                 cake:data
             }
         );
     });
+}
+
+exports.addCake_post=(req,res)=>{
+    async function test(){
+        await function funcA(){
+            console.log('Chạy 1');
+        }
+        await function funcB(){
+            console.log('Chạy 2');
+        }
+        await function funcB(){
+            console.log('Chạy 3');
+        }
+    }
+    res.redirect('/admin/cake');
 }

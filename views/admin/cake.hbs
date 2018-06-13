@@ -1,5 +1,5 @@
 
-<div class="row" id="adminCake">
+<div id="adminCake">
 	 <table class="table table-hover">
     <thead>
       <tr>
@@ -21,7 +21,7 @@
             <td>{{oldPrice}}</td>
             <td>{{newPrice}}</td>
             <td>{{cakeCategory}}</td>
-            <td style="width: 250px">{{image}}</td>
+            <td ><img src="{{image}}" style="width: 100px;height: 80px"></td>
 			<td style="width: 50px">
 				<a href="#" data-toggle="modal" data-target="#myModalAddCake">
 				<span class="fa fa-plus-square" aria-hidden="true"></span> Add </a>
@@ -55,7 +55,7 @@
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Add category </h3>
 						
-						<form action="#" method="POST">
+						<form action="/admin/addCake" method="POST">
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" placeholder="Name Cake" name="nameCake" required="">
 							</div>
@@ -66,8 +66,13 @@
 								<input type="text" placeholder="New Price" name="newPrice" required="">
 							</div>
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Category" name="category" required="">
+								<select id="agileinfo-nav_search" name="select_Category" required="">
+								{{#each cakeCategory}}
+									<option value="{{nameCategory}}">{{nameCategory}}</option>
+								{{/each}}
+								</select>
 							</div>
+							<hr>
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" placeholder="Image" name="image" required="">
 							</div>
