@@ -132,16 +132,6 @@ exports.cake_get=(req,res)=>{
 }
 
 exports.addCake_post=(req,res)=>{
-    async function test(){
-        await function funcA(){
-            console.log('Chạy 1');
-        }
-        await function funcB(){
-            console.log('Chạy 2');
-        }
-        await function funcB(){
-            console.log('Chạy 3');
-        }
-    }
+    
     res.redirect('/admin/cake');
 }
