@@ -132,6 +132,46 @@ exports.cake_get=(req,res)=>{
 }
 
 exports.addCake_post=(req,res)=>{
-    
+    //Category
+    let func_category=(category)=>{
+        return new Promise((resolve,reject)=>{
+            CakeCategory.findOne({nameCategory:category},'nameCategory',(err,data)=>{
+                if(err)
+                    return reject(new Error(err));
+                resolve(data);
+            })
+        });
+    }
+    //Cake
+    let func_cake=(name,oldPrice,newPrice,category,image)=>{
+        return new Promise((resolve,reject)=>{
+            let cake_1=new Cake({
+                nameCake:name,
+                oldPrice:oldPrice,
+                newPrice:newPrice,
+                cakeCategory:category,
+                image:image
+            });
+            cake_1.save(err=>{
+                if(err)
+                    return reject(err);
+                resolve('Save Cake succesfully');
+            })
+        })
+    }
+    let SaveCake=async()=>{
+        
+        try{
+            let category1=await func_category(req.param('select_Category'));
+            let cake_1=await func_cake(req.param('nameCake'),req.param('oldPrice'),req.param('newPrice'),category1,req.param('image'));
+            console.log(cake_1);
+        }catch(e)
+        {
+            console.log(e+'');
+            res.redirect('/admin/cake');
+        }
+
+    }
+    SaveCake();
     res.redirect('/admin/cake');
 }
