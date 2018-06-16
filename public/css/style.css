@@ -155,6 +155,16 @@ label{
 	width:100%;
 	letter-spacing: 1px;
 }
+#agileinfo-nav_search_1 {
+    outline: none;
+    border: none;
+    color: #000;
+    font-size: 14px;
+    background: #f3f3f3;
+	padding:15px 10px;
+	width:100%;
+	letter-spacing: 1px;
+}
 /*-- //search --*/
 /*-- logo --*/
 .logo_agile {
@@ -3018,6 +3028,9 @@ input[type="radio"], input[type="checkbox"] {
     #agileinfo-nav_search {
         font-size: 13px;
     }
+    #agileinfo-nav_search_1 {
+        font-size: 13px;
+    }
     a.nav-stylehead {
         font-size: 14px;
     }
@@ -3619,6 +3632,10 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 12px;
         padding: 10px 10px;
     }
+    #agileinfo-nav_search_1 {
+        font-size: 12px;
+        padding: 10px 10px;
+    }
     .navbar-toggle {
         padding: 7px 8px;
     }
@@ -3878,6 +3895,9 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 14px;
     }
     #agileinfo-nav_search {
+        font-size: 11px;
+    }
+    #agileinfo-nav_search_1 {
         font-size: 11px;
     }
     .navbar-nav > li > a {
@@ -4174,6 +4194,9 @@ input[type="radio"], input[type="checkbox"] {
     #agileinfo-nav_search {
         padding: 10px 3px;
     }
+    #agileinfo-nav_search_1 {
+        padding: 10px 3px;
+    }
     .modal-body.modal-body-sub_agile p a {
         display: block;
     }
@@ -4239,6 +4262,9 @@ input[type="radio"], input[type="checkbox"] {
         margin-top: 20px;
     }
     #agileinfo-nav_search {
+        font-size: 10px;
+    }
+    #agileinfo-nav_search_1 {
         font-size: 10px;
     }
     .about iframe {

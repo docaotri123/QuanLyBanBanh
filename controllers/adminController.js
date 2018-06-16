@@ -189,3 +189,48 @@ exports.deleteCake_post=(req,res)=>{
             res.redirect('/admin/cake');
     })
 }
+
+exports.editCake_post=(req,res)=>{
+    let category=(nameCategory)=>{
+        return new Promise((resolve,reject)=>{
+            CakeCategory.findOne({nameCategory:req.param('select_Category_1')},(err,data)=>{
+                if(err)
+                    return reject(err);
+                resolve(data);
+            })
+        })
+    }
+    let editCake=(cate)=>{
+        return new Promise((resolve,reject)=>{
+            Cake.findById(req.param('idCake'),(err,doc)=>{
+                if(err)
+                    return reject(err);
+
+                doc.nameCake=req.param('nameCake');
+                doc.oldPrice=req.param('oldPrice');
+                doc.newPrice=req.param('newPrice');
+                doc.cakeCategory=cate;
+                doc.image=req.param('image');
+        
+                doc.save((err)=>{
+                    if(err)
+                        return reject(err);
+                    resolve('Updated Cake successfully')
+                });
+            });
+        })
+    }
+    let SaveDate=async ()=>{
+        try{
+            let cate=await category(req.param('select_Category_1'));
+            let cake=await editCake(cate);
+            console.log(cake);
+        }catch(e){
+            console.log(e+'');
+        }
+        finally{
+            res.redirect('/admin/cake');
+        }
+    }
+    SaveDate();
+}

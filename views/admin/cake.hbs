@@ -29,7 +29,7 @@
 				<span class="fa fa-window-close" aria-hidden="true"></span> Delete </a>
 			</td>
 			<td style="width: 50px">
-				<a href="#" data-toggle="modal" data-target="#myModalEditCake">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCake" onclick="Edit(`{{nameCake}},{{oldPrice}},{{newPrice}},{{image}},{{cakeCategory.nameCategory}},{{id}}`)">
 				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
 			</td>
       	</tr>
@@ -128,45 +128,32 @@
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Edit category </h3>
 						
-						<form action="#" method="POST">
+						<form action="/admin/editCake" method="POST">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Name Cake" name="nameCake" required="">
+								<input type="text" placeholder="Name Cake" id="nameCake_edit" name="nameCake" required="">
 							</div>
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Old Price" name="oldPrice" required="">
+								<input type="text" placeholder="Old Price" id="oldPrice_edit" name="oldPrice" required="">
 							</div>
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="New Price" name="newPrice" required="">
+								<input type="text" placeholder="New Price" id="newPrice_edit" name="newPrice" required="">
 							</div>
 							{{!-- <div class="styled-input agile-styled-input-top">
 								<input type="text" placeholder="Category" name="category" required="">
 							</div> --}}
 							<div class="dropdown styled-input agile-styled-input-top">
-									<a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category
-										<span class="caret"></span>
-									</a>
-									<ul class="dropdown-menu multi-column columns-3">
-										<div class="agile_inner_drop_nav_info">
-											<div class="col-sm-4 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													{{#each cakeCategory}}
-													<li>
-														<a href="catalog/product/{{id}}">{{nameCategory}}</a>
-													</li>
-													{{/each}}
-												</ul>
-											</div>
-											<div class="col-sm-4 multi-gd-img">
-												<ul class="multi-column-dropdown">
-												</ul>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</ul>
+								<select id="agileinfo-nav_search_1" name="select_Category_1" required="">
+									{{#each cakeCategory}}
+										<option value="{{nameCategory}}">{{nameCategory}}</option>
+									{{/each}}
+								</select>
 							</div>
 							<hr>
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Image" name="image" required="">
+								<input type="text" placeholder="Image" id="image_edit" name="image" required="">
+							</div>
+							<div class="styled-input agile-styled-input-top">
+								<input hidden="true" type="text" placeholder="Id Cake" id="idCake_edit" name="idCake" required="">
 							</div>
 							<input type="submit" value="Edit">
 						</form>
@@ -181,11 +168,19 @@
 
 {{!-- script --}}
 <script>
-	let id;
+	let id,x;
 	function Delete(id){
 		console.log(id);
 		document.getElementById("idCake").value = id;
 	}
-	
+	function Edit(x){
+		let arr=x.split(',');
+		document.getElementById('nameCake_edit').value=arr[0];
+		document.getElementById('oldPrice_edit').value=arr[1];
+		document.getElementById('newPrice_edit').value=arr[2];
+		document.getElementById('image_edit').value=arr[3];
+		document.getElementById("agileinfo-nav_search_1").value=arr[4];
+		document.getElementById('idCake_edit').value=arr[5];
+	}
 
 </script>
