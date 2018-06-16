@@ -125,7 +125,7 @@ exports.cake_get=(req,res)=>{
             {
                 title:'Cake',
                 cakeCategory:result.cakeCategory,
-                cake:data
+                cake:result.cake
             }
         );
     });
@@ -174,4 +174,18 @@ exports.addCake_post=(req,res)=>{
     }
     SaveCake();
     res.redirect('/admin/cake');
+}
+exports.deleteCake_post=(req,res)=>{
+    console.log(req.param('idCake'));
+    
+    Cake.deleteOne({_id:req.param('idCake')})
+    .exec((err)=>{
+        if(err)
+        {
+            console.log(err+'');
+            res.redirect('/admin/cake');
+        }
+        console.log('Delete successfully');
+            res.redirect('/admin/cake');
+    })
 }

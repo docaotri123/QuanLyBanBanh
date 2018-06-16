@@ -3,7 +3,6 @@
 	 <table class="table table-hover">
     <thead>
       <tr>
-        <th id="th01">#</th>
         <th id="th02">Name</th>
         <th id="th03">Old Price</th>
         <th id="th04">New Price</th>
@@ -16,18 +15,17 @@
     <tbody>
 		{{#each cake}}
       	<tr>
-        	<td>{{stt}}</td>
         	<td>{{nameCake}}</td>
             <td>{{oldPrice}}</td>
             <td>{{newPrice}}</td>
-            <td>{{cakeCategory}}</td>
+            <td>{{cakeCategory.nameCategory}}</td>
             <td ><img src="{{image}}" style="width: 100px;height: 80px"></td>
 			<td style="width: 50px">
 				<a href="#" data-toggle="modal" data-target="#myModalAddCake">
 				<span class="fa fa-plus-square" aria-hidden="true"></span> Add </a>
 			</td>
 			<td style="width: 50px">
-				<a href="#">
+				<a href="#" data-toggle="modal" data-target="#myModalDeleteCake" onclick="Delete(`{{id}}`)">
 				<span class="fa fa-window-close" aria-hidden="true"></span> Delete </a>
 			</td>
 			<td style="width: 50px">
@@ -77,6 +75,35 @@
 								<input type="text" placeholder="Image" name="image" required="">
 							</div>
 							<input type="submit" value="Add">
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+</div>
+{{!-- Model Delete --}}
+<div class="modal fade" id="myModalDeleteCake" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Are you sure delete cake ? </h3>
+						
+						<form action="/admin/deleteCake" method="POST">
+							<div class="styled-input agile-styled-input-top">
+								<input hidden="true" type="text" placeholder="Name Cake" id="idCake" name="idCake" required="">
+							</div>
+							<input type="submit" value="Delete">
 						</form>
 						<div class="clearfix"></div>
 					</div>
@@ -151,3 +178,14 @@
 			<!-- //Modal content-->
 		</div>
 </div>
+
+{{!-- script --}}
+<script>
+	let id;
+	function Delete(id){
+		console.log(id);
+		document.getElementById("idCake").value = id;
+	}
+	
+
+</script>
