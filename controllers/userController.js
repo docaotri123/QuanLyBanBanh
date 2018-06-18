@@ -32,3 +32,34 @@ exports.profile=(req,res)=>{
     }
     Display();
 }
+
+exports.edit_post=(req,res)=>{
+    let saveCustomer=(id)=>{
+        return new Promise((resolve,reject)=>{
+            Customer.findById({_id:id},(err,doc)=>{
+                if(err)
+                    return reject(err);
+                doc.name=req.param('name');
+                doc.phone=req.param('phone');
+                doc.email=req.param('email');
+                doc.save((err)=>{
+                    if(err)
+                        return reject(err);
+                    resolve('Edit Customer successfully');
+                })
+            })
+        })
+    }
+
+    let display=async ()=>{
+        try{
+            let mess=await saveCustomer(req.param('id'));
+            console.log(mess);
+        }catch(e){
+            console.log(e+'');
+        }finally{
+            res.redirect('/user/profile');
+        }
+    }
+    display();
+}

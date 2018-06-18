@@ -1,13 +1,12 @@
 <div class="container">
     {{#if login}}
     <h3>----Thông Tin Cá Nhân----</h3>
-    <form action="#" method="POST">
+    <form action="/user/edit" method="POST">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">UserName</th>
-                    <th scope="col">Password</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Style</th>
@@ -16,17 +15,17 @@
             <tbody>
                 <tr>
                     <th scope="row">
-                        <input type="text" value="{{data.name}}">
+                        <input type="text" value="{{data.name}}" name="name">
                     </th>
-                    <td>{{data.userName}}</td>
                     <td>
-                        <input type="password" value="{{data.password}}">
+                        {{data.username}}
+                        <input hidden="true" type="text" value="{{data.id}}" name="id">
                     </td>
                     <td>
-                        <input type="text" value="{{data.phone}}">
+                        <input type="text" value="{{data.phone}}" name="phone">
                     </td>
                     <td>
-                        <input type="email" value="{{data.email}}">
+                        <input type="email" value="{{data.email}}" name="email">
                     </td>
                     {{#eq styleAccount '0'}}
 		                <td>Khách Hàng</td>

@@ -24,6 +24,9 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
+  //edit profile
+  app.post('/user/edit',userController.edit_post);
+
 }
 
 // Hàm được sử dụng để kiểm tra đã login hay chưa
