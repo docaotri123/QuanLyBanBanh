@@ -42,7 +42,7 @@ module.exports = function(passport) {
                     {
                         name    : req.param('name'),
                         username:req.param('username'),
-                        password : generateHash(req.param('password')),
+                        password : generateHash(password),
                         phone:req.param('phone'),
                         email:req.param('email'),
                         style:0

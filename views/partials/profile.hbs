@@ -1,1 +1,43 @@
-<p>Hello Tri Do</p>
+<div class="container">
+    {{#if login}}
+    <h3>----Thông Tin Cá Nhân----</h3>
+    <form action="#" method="POST">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">UserName</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Style</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        <input type="text" value="{{data.name}}">
+                    </th>
+                    <td>{{data.userName}}</td>
+                    <td>
+                        <input type="password" value="{{data.password}}">
+                    </td>
+                    <td>
+                        <input type="text" value="{{data.phone}}">
+                    </td>
+                    <td>
+                        <input type="email" value="{{data.email}}">
+                    </td>
+                    {{#eq styleAccount '0'}}
+		                <td>Khách Hàng</td>
+	                {{/eq}} 
+                     {{#eq styleAccount '1'}}
+		                <td>Admin</td>
+	                {{/eq}} 
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="Edit">
+    </form>
+    {{/if}}
+</div>
