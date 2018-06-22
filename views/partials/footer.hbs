@@ -92,16 +92,6 @@
 							</li>
 						</ul>
 					</div>
-					{{!-- <div class="agileits_app-devices">
-						<h5>Download the App</h5>
-						<a href="#">
-							<img src="images/1.png" alt="">
-						</a>
-						<a href="#">
-							<img src="images/2.png" alt="">
-						</a>
-						<div class="clearfix"> </div>
-					</div> --}}
 				</div>
 				<!-- //social icons -->
 				<div class="clearfix"></div>
@@ -152,6 +142,7 @@
 		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
 		paypalm.minicartk.cart.on('checkout', function (evt) {
+			debugger;
 			var items = this.items(),
 				len = items.length,
 				total = 0,
