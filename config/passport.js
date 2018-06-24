@@ -26,7 +26,9 @@ module.exports = function(passport) {
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
             done(err, user);
-        });
+        }).catch(function (err){
+			console.log(err);
+		})
     });
 
     passport.use('local-signup', new LocalStrategy({
