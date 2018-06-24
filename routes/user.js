@@ -1,7 +1,7 @@
 var userController=require('../controllers/userController');
 // app/routes.js
 module.exports = function(app, passport) {
-  
+  app.post('/forgotpassword',userController.forgotpassword);
 
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/user/profile', // Điều hướng tới trang hiển thị profile
@@ -16,9 +16,9 @@ module.exports = function(app, passport) {
 }));
 
   app.get('/user/profile',isLoggedIn,userController.profile);
-
   app.get('/verify/',userController.verify);
-
+  app.get('/repplyforgotpassword/',userController.Repplyforgotpassword_get);
+  app.post('/repplyforgotpassword/',userController.Repplyforgotpassword_post);
   // =====================================
   // Đăng xuất ==============================
   // =====================================

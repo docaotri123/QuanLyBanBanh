@@ -7,7 +7,18 @@ var Bill=require('../models/bill');
 var Customer=require('../models/customer');
 var Admin=require('../models/admin');
 var Token=require('../models/token');
-
+var bcrypt=require('bcrypt-nodejs');
+function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+var nodemailer = require("nodemailer");
+var smtpTransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "maihuutuan.jp@gmail.com",
+        pass: "danghuulip"
+    }
+});
 exports.profile=(req,res)=>{
     console.log('--user--'+req.user);
     let getCustomer=(id)=>{
@@ -79,4 +90,41 @@ exports.verify =(req,res)=>{
             });
         })
 
+}
+exports.forgotpassword = (req,res) => {
+    Customer.findOne({ 'username' :  req.body.username }, function(err, user) {
+
+                 var link="http://"+req.get('host')+"/repplyforgotpassword?id="+user._id;
+                 let mailOptions={
+                     from: ' "Grocery Shoppy" <maihuutuan.jp@gmail.com>',
+                     to : user.email,
+                     subject : "Please confirm your Email account",
+                     html : "Hello,"+user.username+"<br> Please Click on the link to reset your password.<br><a href="+link+">Click here to verify</a>"
+                 };
+                 smtpTransport.sendMail(mailOptions, (error, info) => {
+                     if (error) {
+                         return console.log(error);
+                     }
+                 });
+        
+
+           res.redirect('/');
+}); 
+}
+exports.Repplyforgotpassword_get = (req, res) =>{
+   res.render('partials/repplypassword',{id:req.query.id});
+}
+exports.Repplyforgotpassword_post = (req, res) =>{
+    console.log(req.body.id);
+
+    var new_customer = new Customer({
+        isVerified: true,
+        password : generateHash(req.body.password),
+        _id:req.body.id
+    });
+    Customer.findByIdAndUpdate(req.body.id, new_customer, {}, function (err,result) {
+        if (err) { return next(err); }
+        // Successful - redirect to genre detail page.
+        res.redirect('/');
+    });
 }

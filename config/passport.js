@@ -120,4 +120,43 @@ module.exports = function(passport) {
 
     }));   
 
+    passport.use('local-forgotpassword', new LocalStrategy({
+        usernameField : 'username',
+        passwordField : 'password',
+        passReqToCallback : true 
+    },
+    function(req, username, password, done) {
+        process.nextTick(function() {
+        User.findOne({ 'username' :  username }, function(err, user) {
+                newUser.save(function(err) {
+                    if (err)
+                         throw err;
+                         var link="http://"+req.get('host')+"/verify?id="+newUser._id;
+                         let mailOptions={
+                             from: ' "Grocery Shoppy" <maihuutuan.jp@gmail.com>',
+                             to : newUser.email,
+                             subject : "Please confirm your Email account",
+                             html : "Hello,"+newUser.username+"<br> Please Click on the link to reset your password.<br><a href="+link+">Click here to verify</a>"
+                         };
+                         smtpTransport.sendMail(mailOptions, (error, info) => {
+                             if (error) {
+                                 return console.log(error);
+                             }
+                             console.log('Message sent: %s', info.messageId);
+                             // Preview only available when sending through an Ethereal account
+                             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+             
+                             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+                             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+                         });
+                    return done(null, newUser);
+                });
+          
+            
+
+        });    
+
+        });
+
+    }));
 }
