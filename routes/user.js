@@ -17,6 +17,8 @@ module.exports = function(app, passport) {
 
   app.get('/user/profile',isLoggedIn,userController.profile);
 
+  app.get('/verify/',userController.verify);
+
   // =====================================
   // Đăng xuất ==============================
   // =====================================

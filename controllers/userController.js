@@ -63,3 +63,20 @@ exports.edit_post=(req,res)=>{
     }
     display();
 }
+exports.verify =(req,res)=>{
+    Customer.findById({_id:req.query.id},(err,doc)=>{
+        if(err)
+            return reject(err);
+            var new_customer = new Customer({
+                isVerified:true,
+                _id:doc._id
+            });
+          
+            Customer.findByIdAndUpdate(doc._id, new_customer, {}, function (err,result) {
+                if (err) { return next(err); }
+                // Successful - redirect to genre detail page.
+                res.redirect('/');
+            });
+        })
+
+}
