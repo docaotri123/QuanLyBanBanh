@@ -1,1 +1,13 @@
 <h3>Check out</h3>
+<div class="container">
+  	<form action="/repplyforgotpassword" method="POST">
+		<div class="styled-input">
+			<input type="password" placeholder="Password" name="password" id="password1" >
+		</div>
+		<div class="styled-input">
+			<input type="password" placeholder="Confirm Password" name="confirmPassword" id="password2">
+		</div>
+        <input type="hidden" name="id" value="{{id}}">
+		<input type="submit" value="Confirm">
+	</form>
+</div>
