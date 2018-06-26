@@ -57,6 +57,39 @@ exports.index=(req,res,next)=>{
     )
 }
 
+exports.searchCakes=(req,res,next)=>{
+    async.parallel({
+        cakes:function(callback){
+            Cake.find({nameCake: req.body.search}, 'nameCake oldPrice newPrice image')
+            .populate('cakeCategory')
+            .exec(callback)
+        }
+    },(err,results)=>{
+        //successfully,so render.
+        let cakes=results.cakes;
+        let listCake=[];
+        let arr=[];
+        let len=3;
+        for(let i=0;i<cakes.length;i++)
+        {
+            if(i<cakes.length)
+            {
+                listCake.push(cakes.slice(i,i+3));
+            }          
+            else
+            {
+                listCake.push(cakes.slice(i,cakes.length));
+            }
+            i+=2;
+        }
+        res.render('partials/product',{
+        title:'Product',
+        cakeCategory:results.cakeCategory,
+        listCake:listCake
+        });
+    })
+}
+
 exports.cakeProduct=(req,res,next)=>{
     async.parallel({
         cakeCategory:function(callback){

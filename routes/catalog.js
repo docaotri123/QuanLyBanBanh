@@ -16,6 +16,7 @@ router.get('/product/:id',cake_Controller.cakeProduct);
 
 router.get('/cake/:id',cake_Controller.cakeDetail);
 
+router.post('/cake/search', cake_Controller.searchCakes);
 //User
 
 module.exports=router;
