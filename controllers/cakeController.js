@@ -60,8 +60,7 @@ exports.index=(req,res,next)=>{
 exports.searchCakes=(req,res,next)=>{
     async.parallel({
         cakes:function(callback){
-            Cake.find({nameCake: req.body.search}, 'nameCake oldPrice newPrice image')
-            .populate('cakeCategory')
+            Cake.find({$text: {$search: req.body.search}}, 'nameCake oldPrice newPrice image')
             .exec(callback)
         }
     },(err,results)=>{

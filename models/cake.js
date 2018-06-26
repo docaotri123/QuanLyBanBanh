@@ -11,6 +11,8 @@ var CakeSchema=new Schema(
     }
 );
 
+CakeSchema.index({nameCake: 'text'});
+
 // Export model.
 module.exports=mongoose.model("Cake",CakeSchema);
 
