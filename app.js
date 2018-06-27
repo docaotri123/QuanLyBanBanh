@@ -114,6 +114,23 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // Named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // Port number
+    return port;
+  }
+
+  return false;
+}
+
+
 var port = normalizePort(process.env.PORT || '3000');
 
 app.listen(port,function(){
