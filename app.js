@@ -114,7 +114,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000,function(){
+var port = normalizePort(process.env.PORT || '3000');
+
+app.listen(port,function(){
   console.log("Port is listening port 3000");
 });
 
