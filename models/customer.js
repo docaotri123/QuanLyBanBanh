@@ -9,7 +9,7 @@ var CustomerSchema=new Schema(
         password:{type:String,required:true},
         isVerified: { type: Boolean, default: false },
         phone:{type:String,required:true},
-        email:{type:String,required:true},
+        email:{type:String,required:true,unique:true},
         style:{type:String,required:true}
     }
 );
