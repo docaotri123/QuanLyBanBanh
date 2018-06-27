@@ -20,7 +20,6 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 exports.profile=(req,res)=>{
-    console.log('--user--'+req.user);
     let getCustomer=(id)=>{
         return new Promise((resolve,reject)=>{
             Customer.findById({_id:id},(err,data)=>{

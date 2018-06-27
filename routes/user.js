@@ -6,7 +6,7 @@ module.exports = function(app, passport) {
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/user/profile', // Điều hướng tới trang hiển thị profile
     failureRedirect : '/', // Trở lại trang đăng ký nếu lỗi
-    failureFlash : true 
+    failureFlash : false 
   }));
 
   app.post('/signin', passport.authenticate('local-login', {
@@ -33,7 +33,10 @@ module.exports = function(app, passport) {
 
 // Hàm được sử dụng để kiểm tra đã login hay chưa
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
+  if(res.locals.user.isVerified==false)
+    res.redirect('/logout');
+  if (req.isAuthenticated()&& res.locals.user.isVerified){
       return next();
+  }
   res.redirect('/');
 }

@@ -69,9 +69,19 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
 
+//Category
+// var CakeCategory=require('./controllers/cakeController');
+
+// let xx=CakeCategory.category();
+
+// console.log('---'+xx);
+
+//
+
 app.use((req,res,next)=>{
   res.locals.login=req.isAuthenticated();
   res.locals.session = req.session;
+  res.locals.user=req.user;
   res.locals.styleAccount=5;
   if(req.isAuthenticated()===true)
   {
@@ -107,5 +117,6 @@ app.use(function(err, req, res, next) {
 app.listen(3000,function(){
   console.log("Port is listening port 3000");
 });
+
 
 module.exports = app;

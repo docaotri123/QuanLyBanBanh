@@ -28,7 +28,8 @@
 							<span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
 					</li>
 					<li>
-						<span class="fa fa-phone" aria-hidden="true"></span> 0965 528 621
+						<a href="#" data-toggle="modal" data-target="#myModal3">
+							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Forgot password </a>
 					</li>
 					<li >
 					{{#if login}}
@@ -44,10 +45,7 @@
 						<a href="#" data-toggle="modal" data-target="#myModal2">
 							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
 					</li>
-					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal3">
-							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Forgot password </a>
-					</li>
+					
 				</ul>
 				<!-- //header lists -->
 				<!-- search -->
@@ -65,17 +63,10 @@
 					<div class="nav navbar-nav navbar-right">
 						<li>
 							<a href="/shopping-cart/">
-								<i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping cart
+								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Cart
 								<span class="badge">{{session.cart.totalQty}}</span>
 							</a>
-						</li>
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="w3view-cart" type="submit" name="submit" value="">
-								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-							</button>
-						</form>
+						</li> 
 					</div>
 				</div>
 				<!-- //cart details -->
@@ -204,9 +195,7 @@
 	<!-- //signup Model -->
 	<!-- //header-bot -->
 	<!-- navigation -->
-	{{#eq styleAccount '0'}}
-		<h3>Hello</h3>
-	{{/eq}} 
+
 
 	<div class="ban-top">
 		<div class="container">
@@ -270,10 +259,25 @@
 										</div>
 									</ul>
 								</li>
-					
-								<li class="">
-									<a class="nav-stylehead" href="faqs.html">Faqs</a>
-								</li>
+								{{#if login}}
+								{{#eq styleAccount '1'}}
+		
+									<li class="dropdown">
+										<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Admin
+											<b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu agile_short_dropdown">
+											<li>
+												<a href="/admin/cake">Products</a>
+											</li>
+											<li>
+												<a href="/admin/category">Categories</a>
+											</li>
+										</ul>
+									</li>
+								{{/eq}} 
+								{{/if}}
+
 								<li class="dropdown">
 									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Pages
 										<b class="caret"></b>

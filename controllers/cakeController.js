@@ -44,7 +44,6 @@ exports.index=(req,res,next)=>{
         }
     },(err,results)=>{
         //list cake
-        
         //Render View
         res.render('partials/index',{title:'Home',
             cakeCategory:results.cakeCategory,
@@ -204,3 +203,22 @@ exports.contact=(req,res,next)=>{
     data:results.cakeDetail});
    })
 }
+
+// exports.category=(req,res)=>{
+//      //Category
+//      let func_category=()=>{
+//         return new Promise((resolve,reject)=>{
+//             CakeCategory.find({},'nameCategory',(err,data)=>{
+//                 if(err)
+//                     return reject(new Error(err));
+//                 resolve(data);
+//             })
+//         });
+//     }
+
+//     let cate=async()=>{
+//         let kq= await func_category();
+//     }
+//     cate();
+
+// }

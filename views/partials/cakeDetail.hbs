@@ -24,7 +24,7 @@
 						<ul class="slides">
 							<li data-thumb='{{data.image}}'>
 								<div class="thumb-image">
-									<img src='{{data.image}}' data-imagezoom="true" class="img-responsive" alt=""> </div>
+									<img src='{{data.image}}' data-imagezoom="true" class="img-responsive" alt="" style="width: 240px;height: 200px"> </div>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -55,17 +55,8 @@
 				</div>
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-						<form action="/add-to-cart/{{this._id}}" method="post">
+						<form action="/add-to-card/{{data._id}}" method="post">
 							<fieldset>
-								<input type="hidden" name="cmd" value="_cart" />
-								<input type="hidden" name="add" value="1" />
-								<input type="hidden" name="business" value=" " />
-								<input type="hidden" name="item_name" value="Zeeba Premium Basmati Rice - 5 KG" />
-								<input type="hidden" name="amount" value="950.00" />
-								<input type="hidden" name="discount_amount" value="1.00" />
-								<input type="hidden" name="currency_code" value="USD" />
-								<input type="hidden" name="return" value=" " />
-								<input type="hidden" name="cancel_return" value=" " />
 								<input type="submit" name="submit" value="Add to cart" class="button" />
 							</fieldset>
 						</form>
@@ -97,7 +88,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href='catalog/cake/{{_id}}'>
-									<img src='{{image}}' alt="">
+									<img src='{{image}}' alt="" style="width: 240px;height: 200px">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -109,17 +100,8 @@
 									{{!-- <p>Save $40.00</p> --}}
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="/add-to-cart/{{this._id}}" method="post">
+									<form action="/add-to-card/{{_id}}" method="post">
 										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-											<input type="hidden" name="amount" value="220.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
 											<input type="submit" name="submit" value="Add to cart" class="button" />
 										</fieldset>
 									</form>

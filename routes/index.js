@@ -3,6 +3,8 @@ var router = express.Router();
 var cake_Controller=require('../controllers/cakeController');
 var Product = require('../models/cake');
 var Cart = require('../models/cart');
+const Bill=require('../models/bill');
+const BillInfo=require('../models/billInfo');
 // GET home page.
 router.get('/', function(req, res) {
   res.redirect('/catalog');
@@ -25,6 +27,7 @@ router.get('/contact',cake_Controller.contact);
 
 router.post('/add-to-card/:id', function(req,res,next){
   var productId = req.params.id;
+  console.log(req.params.id);
   var cart = new Cart(req.session.cart? req.session.cart:{});
   Product.findById(productId, function(err, product){
     if(err){
@@ -39,13 +42,29 @@ router.post('/add-to-card/:id', function(req,res,next){
 });
 
 router.get('/shopping-cart', function(req,res,next){
-  console.log("aaaaaaaaaa");
   if(!req.session.cart){
-    console.log("bbbbbbbbb");
     return res.render('partials/shopping-cart', {products: null});
   }
-  console.log("ccccccccc");
   var cart = new Cart(req.session.cart);
   res.render('partials/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+});
+
+router.post('/payment',(req,res)=>{
+  if(res.locals.login)
+  {    
+    //create bill
+    let bill=Bill({dateCheckIn:Date.now(),dateCheckOut:null,disCount:0,status:'Chưa thanh toán',address:req.param('address'),customer:res.locals.user});
+    
+    //create billInfo
+    for(let item in req.session.cart.items)
+    {
+      console.log(item);
+    }
+    req.session.cart=null;
+
+    res.redirect('/shopping-cart');
+  }else{
+    res.redirect('/shopping-cart');
+  }
 });
 module.exports=router;

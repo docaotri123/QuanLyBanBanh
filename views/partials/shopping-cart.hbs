@@ -1,5 +1,6 @@
 {{# if products }}
     <div class="row">
+        <h3>{{message}}</h3>
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
         <ul class="list-group">
             {{# each products}}
@@ -7,13 +8,7 @@
                 <span class="badge">{{this.qty}}</span>
                 <strong>{{this.item.nameCake}}</strong>
                 <span class="label label-success">{{this.price}}000</span>
-                <div class="btn-group">
-                    <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Reduce by 1</a></li>
-                        <li><a href="#">Remove all</a></li>
-                    </ul>
-                </div>
+                
             </li>
             {{/each}}
         </ul>
@@ -27,9 +22,17 @@
     <hr>
     <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-        <buton type="button" class="btn btn-succes">Checkout</buton>
+        <form action="/payment" method="post">
+            <div class="styled-input agile-styled-input-top">
+				<input type="text" placeholder="Địa Chỉ" name="address" required="">
+			</div>
+            <br>
+            <input type="submit" name="submit" value="Checkout" class="button" />
+        </form> 
     </div>
     </div>
+    	<!-- Modal1 -->
+	<!-- //Modal1 -->
 {{ else }}
 <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
