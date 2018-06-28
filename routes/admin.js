@@ -17,4 +17,8 @@ router.post('/addCake',adminController.addCake_post);
 router.post('/deleteCake',adminController.deleteCake_post);
 router.post('/editCake',adminController.editCake_post);
 
+
+//customer
+router.get('/customer', adminController.customer_get);
+
 module.exports=router;

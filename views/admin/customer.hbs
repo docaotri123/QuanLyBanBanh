@@ -1,0 +1,30 @@
+
+<div id="adminCustomer">
+	 <table class="table table-hover">
+    <thead>
+      <tr>
+        <th id="th02">Name</th>
+        <th id="th03">Username</th>
+        <th id="th04">Phone</th>
+        <th id="th05">Email</th>
+        <th id="th06">Status</th>
+        <th id="th07" colspan="3">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+		{{#each customer}}
+      	<tr>
+        	<td>{{name}}</td>
+            <td>{{username}}</td>
+            <td>{{phone}}</td>
+            <td>{{email}}</td>
+            <td>{{isVerified}}</td>
+			<td style="width: 50px">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCake" onclick="Edit(`{{name}},{{phone}},{{email}},{{isVerified}},{{id}}`)">
+				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
+			</td>
+      	</tr>
+		{{/each}}
+    </tbody>
+  </table>
+</div>

@@ -4,9 +4,10 @@ const CakeCategory=require('../models/cakeCategory');
 const Cake=require('../models/cake');
 const CakeCategoryVM=require('../models/viewmodel/cakeCategory'); 
 const CakeVM=require('../models/viewmodel/cake'); 
-
+const Customer=require('../models/customer');
+const CustomerVM=require('../models/viewmodel/customer');
+//thiếu ở đây
 //cakeCategory
-
 exports.category_get=(req,res,next)=>{
     if (res.locals.styleAccount != 1)
         res.redirect('/catalog');
@@ -94,7 +95,7 @@ exports.editCategoty_post=(req,res,next)=>{
         });
     });
 }
-
+//
 //cake
 exports.cake_get=(req,res)=>{
     if (res.locals.styleAccount != 1)
@@ -241,4 +242,41 @@ exports.editCake_post=(req,res)=>{
         }
     }
     SaveDate();
+}
+
+//customer
+exports.customer_get=(req,res,next)=>{
+    if (res.locals.styleAccount != 1)
+        res.redirect('/catalog');
+    else {
+        async.parallel({
+            customer: function (callback) {
+                Customer.find({}, 'name username isVerified phone email')
+                    .exec(callback)
+            }
+        }, (err, result) => {
+            let data = [];
+            let x;
+            let rs = result.customer;
+            for (let i = 0; i < rs.length; i++) {
+                x = new CustomerVM({
+                    id: rs[i].id
+                    stt: i + 1,
+                    name: rs[i].name,
+                    username: rs[i].username,
+                    isVerified: rs[i].isVerified,
+                    phone: rs[i].phone,
+                    email: rs[i].email
+                });
+                data.push(x);
+            }
+
+            res.render('admin/customer',
+                {
+                    title: 'Customer',
+                    Customer: data
+                }
+            );
+        });
+    } 
 }
