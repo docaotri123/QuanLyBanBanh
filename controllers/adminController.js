@@ -6,7 +6,7 @@ const CakeCategoryVM=require('../models/viewmodel/cakeCategory');
 const CakeVM=require('../models/viewmodel/cake'); 
 const Customer=require('../models/customer');
 const CustomerVM=require('../models/viewmodel/customer');
-//thiếu ở đây
+
 //cakeCategory
 exports.category_get=(req,res,next)=>{
     if (res.locals.styleAccount != 1)
@@ -260,7 +260,7 @@ exports.customer_get=(req,res,next)=>{
             let rs = result.customer;
             for (let i = 0; i < rs.length; i++) {
                 x = new CustomerVM({
-                    id: rs[i].id
+                    id: rs[i].id,
                     stt: i + 1,
                     name: rs[i].name,
                     username: rs[i].username,
@@ -270,11 +270,10 @@ exports.customer_get=(req,res,next)=>{
                 });
                 data.push(x);
             }
-
             res.render('admin/customer',
                 {
                     title: 'Customer',
-                    Customer: data
+                    customer: data
                 }
             );
         });
