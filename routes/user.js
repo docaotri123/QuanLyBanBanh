@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
   app.post('/forgotpassword',userController.forgotpassword);
 
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/user/profile', // Điều hướng tới trang hiển thị profile
+    successRedirect : '/', // Điều hướng tới trang hiển thị profile
     failureRedirect : '/', // Trở lại trang đăng ký nếu lỗi
     failureFlash : false 
   }));
