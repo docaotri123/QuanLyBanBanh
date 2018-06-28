@@ -1,42 +1,54 @@
 <div class="container">
     {{#if login}}
-    <h3>----Thông Tin Cá Nhân----</h3>
-    <form action="/user/edit" method="POST">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">UserName</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Style</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">
-                        <input type="text" value="{{data.name}}" name="name">
-                    </th>
-                    <td>
-                        {{data.username}}
-                        <input hidden="true" type="text" value="{{data.id}}" name="id">
-                    </td>
-                    <td>
-                        <input type="text" value="{{data.phone}}" name="phone">
-                    </td>
-                    <td>
-                        <input type="email" value="{{data.email}}" name="email">
-                    </td>
-                    {{#eq styleAccount '0'}}
-		                <td>Khách Hàng</td>
-	                {{/eq}} 
-                     {{#eq styleAccount '1'}}
-		                <td>Admin</td>
-	                {{/eq}} 
-                </tr>
-            </tbody>
-        </table>
-        <input type="submit" value="Edit">
-    </form>
+    <h3>User Information</h3>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <form class="form-horizontal" action="/user/edit" method="POST">
+            <input type="hidden" value="{{data.id}}" name="id">
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="name">Name:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" id="name" name="name" value="{{data.name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="username">Username:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" id="username" name="username" value="{{data.username}}" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="phone">Phone:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{data.phone}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="email">Email:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" id="email" name="email" value="{{data.email}}" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Style:</label>
+                    <div class="col-md-5">
+                        {{#eq styleAccount '0'}}
+                        <input type="text" class="form-control" id="email" name="email" value="Customer" disabled="disabled">
+                        {{/eq}} {{#eq styleAccount '1'}}
+                        <input type="text" class="form-control" id="email" name="email" value="Admin" disabled="disabled">
+                        {{/eq}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2"></label>
+                    <div class="col-md-5">
+                       <button type="submit" class="btn btn-primary" style="width: 120px">Edit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     {{/if}}
 </div>

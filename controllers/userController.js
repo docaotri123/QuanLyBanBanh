@@ -51,7 +51,6 @@ exports.edit_post=(req,res)=>{
                     return reject(err);
                 doc.name=req.param('name');
                 doc.phone=req.param('phone');
-                doc.email=req.param('email');
                 doc.save((err)=>{
                     if(err)
                         return reject(err);

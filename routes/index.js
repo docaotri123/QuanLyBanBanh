@@ -52,23 +52,37 @@ router.get('/shopping-cart', function (req, res, next) {
 router.post('/payment', (req, res) => {
   if (res.locals.login) {
     //create bill
-    let bill = Bill({ dateCheckIn: Date.now(), dateCheckOut: null, disCount: 0, status: 'Chưa thanh toán', address: req.param('address'), customer: res.locals.user });
+    let bill = new Bill({
+      dateCheckIn: Date.now(),
+      dateCheckOut: null,
+      disCount: 0,
+      status: 'Chưa thanh toán',
+      address: req.param('address'),
+      customer: res.locals.user
+    });
+
+    bill.save();
     // bill.save(err => {
     //   if (err)
     //     return err;
     // });
     // //create billInfo
-    // const items = req.session.cart.items;
-    
-    // let i=0;
-    // for (let item in items) {
-    //   let billinfos = new BillInfo({ cake: items[item].item, bill: bill, priceNow: items[item].price, count: items[item].qty });
-    //   billinfos.save();
+    const items = req.session.cart.items;
+    const billinfos = [];
 
-    // }
-    // console.log(billinfos);
-    
-    req.session.cart=null;
+    let i = 0;
+    for (let item in items) {
+      const billInfo = new BillInfo({
+        cake: items[item].item,
+        bill: bill,
+        priceNow: items[item].price,
+        count: items[item].qty
+      });
+
+      billInfo.save();
+    }
+    req.session.cart = null;
+
     res.redirect('/shopping-cart');
   } else {
     res.redirect('/shopping-cart');
