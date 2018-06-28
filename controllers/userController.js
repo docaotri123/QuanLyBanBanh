@@ -13,7 +13,9 @@ function generateHash(password) {
 };
 var nodemailer = require("nodemailer");
 var smtpTransport = nodemailer.createTransport({
-    service: "Gmail",
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
         user: "maihuutuan.jp@gmail.com",
         pass: "danghuulip"
