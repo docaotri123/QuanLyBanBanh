@@ -20,7 +20,7 @@
             <td>{{email}}</td>
             <td>{{isVerified}}</td> 
 			<td style="width: 50px">
-				<a href="#" data-toggle="modal" data-target="#myModalEditCake" onclick="Edit(`{{name}},{{phone}},{{email}},{{isVerified}},{{id}}`)">
+				<a href="#" data-toggle="modal" data-target="#myModalEditCustomer" onclick="Edit(`{{name}},{{phone}},{{email}},{{isVerified}},{{id}}`)">
 				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
 			</td>
       	</tr>
@@ -28,3 +28,55 @@
     </tbody>
   </table>
 </div>
+
+{{!-- Model Edit --}}
+<div class="modal fade" id="myModalEditCustomer" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body modal-body-sub_agile">
+          <div class="main-mailposi">
+            <span class="fa fa-envelope-o" aria-hidden="true"></span>
+          </div>
+          <div class="modal_body_left modal_body_left1">
+            <h3 class="agileinfo_sign">Edit customer</h3>
+            
+            <form action="/admin/editCustomer" method="POST">
+              <div class="styled-input agile-styled-input-top">
+                <input type="text" id="nameCustomer_edit" placeholder="Name Customer" name="nameCustomer" required="">
+              <div class="styled-input agile-styled-input-top">
+                <input type="text" id="phoneCustomer_edit" placeholder="Phone Customer" name="phoneCustomer" required="">
+              <div class="styled-input agile-styled-input-top">
+                <input type="text" id="emailCustomer_edit" placeholder="Email Customer" name="emailCustomer" required="">      
+              <div class="dropdown styled-input agile-styled-input-top">
+                <select id="roleCustomer_edit" name="roleCustomer" required="">
+                    <option value="0">Người dùng</option>
+                    <option value="1">Admin</option>
+                </select>
+              </div>
+              <input type="submit" value="Edit">
+            </form>
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!-- //Modal content-->
+    </div>
+
+</div>
+
+{{!-- script --}}
+<script>
+  let x;
+  function Edit(x){
+    let arr=x.split(',');
+    document.getElementById('nameCustomer_edit').value=arr[0];
+    document.getElementById('phoneCustomer_edit').value=arr[1];
+    document.getElementById('emailCustomer_edit').value=arr[2];
+  }
+
+</script>
