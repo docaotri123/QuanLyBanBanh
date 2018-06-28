@@ -4,7 +4,7 @@ var Schema=mongoose.Schema;
 
 var CustomerSchema=new Schema(
     {
-	    stt:{type:Number},
+	    id:{type:String},
         name:{type:String,required:true},
         username:{type:String,unique:true},
         password:{type:String,required:true},

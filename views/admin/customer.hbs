@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-		{{#each customer}}
+		{{#each customer}} 
       	<tr>
         	<td>{{name}}</td>
             <td>{{username}}</td>
@@ -20,8 +20,8 @@
             <td>{{email}}</td>
             <td>{{isVerified}}</td> 
 			<td style="width: 50px">
-				<a href="#" data-toggle="modal" data-target="#myModalEditCustomer" onclick="Edit(`{{name}},{{phone}},{{email}},{{isVerified}},{{id}}`)">
-				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a>
+				<a href="#" data-toggle="modal" data-target="#myModalEditCustomer" onclick="Edit(`{{name}},{{phone}},{{email}},{{id}}`)">
+				<span class="fa fa-edit" aria-hidden="true"></span> Edit </a> 
 			</td>
       	</tr>
 		{{/each}}
@@ -46,6 +46,9 @@
             
             <form action="/admin/editCustomer" method="POST">
               <div class="styled-input agile-styled-input-top">
+                <input hidden="true" type="text" placeholder="Id Customer" id="idCustomer_edit" name="idCustomer" required="">
+              </div>
+              <div class="styled-input agile-styled-input-top">
                 <input type="text" id="nameCustomer_edit" placeholder="Name Customer" name="nameCustomer" required="">
               <div class="styled-input agile-styled-input-top">
                 <input type="text" id="phoneCustomer_edit" placeholder="Phone Customer" name="phoneCustomer" required="">
@@ -56,7 +59,7 @@
                     <option value="0">Người dùng</option>
                     <option value="1">Admin</option>
                 </select>
-              </div>
+              </div>  
               <input type="submit" value="Edit">
             </form>
             <div class="clearfix"></div>
@@ -77,6 +80,7 @@
     document.getElementById('nameCustomer_edit').value=arr[0];
     document.getElementById('phoneCustomer_edit').value=arr[1];
     document.getElementById('emailCustomer_edit').value=arr[2];
+    document.getElementById('idCustomer_edit').value=arr[3];
   }
 
 </script>

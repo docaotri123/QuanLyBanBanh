@@ -20,5 +20,6 @@ router.post('/editCake',adminController.editCake_post);
 
 //customer
 router.get('/customer', adminController.customer_get);
+router.post('/editCustomer', adminController.editCustomer_post);
 
 module.exports=router;

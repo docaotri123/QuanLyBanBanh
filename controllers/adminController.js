@@ -251,7 +251,7 @@ exports.customer_get=(req,res,next)=>{
     else {
         async.parallel({
             customer: function (callback) {
-                Customer.find({}, 'name username isVerified phone email')
+                Customer.find({style: 0}, '_id name username isVerified phone email')
                     .exec(callback)
             }
         }, (err, result) => {
@@ -261,7 +261,6 @@ exports.customer_get=(req,res,next)=>{
             for (let i = 0; i < rs.length; i++) {
                 x = new CustomerVM({
                     id: rs[i].id,
-                    stt: i + 1,
                     name: rs[i].name,
                     username: rs[i].username,
                     isVerified: rs[i].isVerified,
@@ -278,4 +277,21 @@ exports.customer_get=(req,res,next)=>{
             );
         });
     } 
+}
+
+exports.editCustomer_post=(req,res,next)=>{
+    Customer.findById(req.body.idCustomer,(err,doc)=>{
+        if(err)
+            handleError(err);      
+        doc.name=req.body.nameCustomer;
+        doc.phone=req.body.phoneCustomer;
+        doc.email=req.body.emailCustomer;
+        doc.style=req.body.roleCustomer;
+        doc.save((err)=>{
+            if(err)
+                handleError(err);
+            console.log('Updated successfully');
+            res.redirect('/admin/customer');
+        });
+    });
 }
