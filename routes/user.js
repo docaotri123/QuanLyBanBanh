@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
   app.post('/forgotpassword',userController.forgotpassword);
 
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/', // Điều hướng tới trang hiển thị profile
+    successRedirect : '/user/profile', // Điều hướng tới trang hiển thị profile
     failureRedirect : '/', // Trở lại trang đăng ký nếu lỗi
     failureFlash : false 
   }));
@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
 function isLoggedIn(req, res, next) {
   if(res.locals.user.isVerified==false)
     res.redirect('/logout');
-  if (req.isAuthenticated()&& res.locals.user.isVerified){
+  if (req.isAuthenticated()&& res.locals.user.isVerified==true){
       return next();
   }
   res.redirect('/');

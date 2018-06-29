@@ -1,6 +1,6 @@
 {{# if products }}
-<div class="row">
-    <h3>{{message}}</h3>
+    <div class="row">
+        <h3>{{message}}</h3>
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
         <ul class="list-group">
             {{# each products}}
@@ -8,33 +8,31 @@
                 <span class="badge">{{this.qty}}</span>
                 <strong>{{this.item.nameCake}}</strong>
                 <span class="label label-success">{{this.price}}000</span>
-
+                
             </li>
             {{/each}}
         </ul>
     </div>
-</div>
-<div class="row">
+    </div>
+    <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
         <strong>Total: {{totalPrice}}000</strong>
     </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-        <form action="/payment" method="post">
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea class="form-control" rows="5" placeholder="Please enter address..." name="address" required="" id="address"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="submit" name="submit" value="Checkout" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
-</div>
-<!-- Modal1 -->
-<!-- //Modal1 -->
+    <hr>
+    <div class="row">
+    <div class="col-sm-6 col-md-6 col-md555555555555-offset-3 col-sm-offset-3">
+        <form action="/payment" method="post">
+            <div class="styled-input agile-styled-input-top">
+				<input type="text" placeholder="Địa Chỉ" name="address" required="">
+			</div>
+            <br>
+            <input type="submit" name="submit" value="Checkout" class="button" />
+        </form> 
+    </div>
+    </div>
+    	<!-- Modal1 -->
+	<!-- //Modal1 -->
 {{ else }}
 <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
@@ -42,3 +40,5 @@
     </div>
 </div>
 {{/if}}
+
+
